@@ -290,6 +290,481 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yuzhengguo.top/2018/05/09/VIVADO时序分析练习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chinkwo Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524418210619&di=1d9c2878b044ad09f9dc929b25e7ccc4&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F7c1ed21b0ef41bd5f870a8aa5ada81cb39db3d48.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chinkwo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/09/VIVADO时序分析练习/" itemprop="url">
+                  VIVADO时序分析练习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-05-09 08:48:01 / Updated at: 08:50:35" itemprop="dateCreated datePublished" datetime="2018-05-09T08:48:01+08:00">2018-05-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="VIVADO时序分析练习"><a href="#VIVADO时序分析练习" class="headerlink" title="VIVADO时序分析练习"></a>VIVADO时序分析练习</h1><p>时序分析在FPGA设计中是分析工程很重要的手段，时序分析的原理和相关的公式小编在这里不再介绍，这篇文章是小编在练习VIVADO软件时序分析的笔记，小编这里使用的是18.1版本的VIVADO。<br>这次的练习选择的是ZYNQ的芯片，原本工程是工作在100MHz的时钟，但是作为练习，我们可以把时钟调到一个极限的程度来进行优化。<br>首先，打开一个工程，更改一下时钟频率，使得工程能够有一些时序问题，我们再通过时序分析的方法对它进行优化。我们这里把原本的100M时钟改成了200M时钟，具体步骤如下：</p>
+<ul>
+<li><strong>一</strong>：更改时钟之后进行综合，并打开timing analysis<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113457588-1720954736.png" alt="1"></li>
+<li><p><strong>二</strong>：通过report clock可以查看全局时钟树的情况<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113520539-99296894.png" alt="2"></p>
+</li>
+<li><p><strong>三</strong>：通过report timing summary可以看到出现了12个时序问题，总的时序问题达到9个ns多，说明时序问题已经比较糟糕了<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113540988-731657021.png" alt="3"></p>
+</li>
+<li><p><strong>四</strong>：在timing窗口里面可以查看相关的时序违例信息，这里只显示了10个，可以在report timing summary中选择要查看的个数，比如选择100个<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113610685-1067421724.png" alt="4"></p>
+</li>
+</ul>
+<p><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113551286-1792658497.png" alt="5"></p>
+<ul>
+<li><p><strong>五</strong>：我们可以打开setting -&gt;synthesis，更改strategy里面VIVADO提供的优化strategy来进行相关的优化，不同的strategy对应不同的综合模式<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113630185-1628655457.png" alt="6"><br>也可以在design runs里面，右键点击相应的sunth-&gt;change run settings来修改不同的综合方案<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113655035-1690350832.png" alt="7"><br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113713727-1444353271.png" alt="8"></p>
+</li>
+<li><p><strong>六</strong>：这里我们选择Flow_PerfOptimized_high来进行综合（也可以一个一个的尝试），综合完成之后，可以看到，违例的现象优化到了8条，总的违例时间减少了1ns。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113726001-1620737151.png" alt="9"></p>
+</li>
+<li><p><strong>七</strong>：小编在尝试各种综合方案之后，发现并不能够优化很好，所以我们开始进行下一步操作——Run Implementation，看看通过Implementation VIVADO能够把时序问题优化到什么程度。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113739322-1830876495.png" alt="10"></p>
+</li>
+</ul>
+<p>完成布局布线之后，可以看到先前的时序问题通过布局布线已经被优化了，现在没有了时序问题，但是最差的余量只有0.152ns,这个结果并不是很理想。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113809009-753478045.png" alt="11"></p>
+<ul>
+<li><strong>八</strong>：通过查看时序路径详情，可以看到时序的余量很不理想<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113817990-262378600.png" alt="12"></li>
+</ul>
+<p>那么我们可以通过修改Implementation的方案来进行优化，在settings里面找到Implementation的strategy，选择不同的方案进行尝试<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113825985-293828252.png" alt=""></p>
+<ul>
+<li><strong>九</strong>：这里我们选择Performance Explore进行尝试，可以看到通过更改Implementation的strategy，时序被优化了，最差的余量达到了0.556ns，比之前更好了，但是似乎还可以再进行优化，需要不断的尝试，从而找到最优的结果。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113920744-1803404558.png" alt="13"></li>
+</ul>
+<p><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113847971-1669467386.png" alt="14"></p>
+<ul>
+<li><p><strong>十</strong>：在synthesis的strategy和Implementation的strategy里面可以看到其他的一些选项，都可以尝试，比如在Implementation的strategy里面有一个Flow quick的模式，选择Flow quick模式对比之前的模式可以发现，VIVADO在这个模式下进行布局布线会快很多，但是时序也变的一塌糊涂。小编认为这种模式可以在一些比较大的工程里，比较赶时间的情况下尝试使用。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113910805-2002315916.png" alt="15"></p>
+</li>
+<li><p><strong>十一</strong>：同样的，我们还可以通过report power来查看功耗情况，并通过更改一些策略进行优化，其他的一些功能小编也在探索中。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113931941-306839227.png" alt="16"></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yuzhengguo.top/2018/05/09/VIVADO_FIR滤波器设计与仿真（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chinkwo Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524418210619&di=1d9c2878b044ad09f9dc929b25e7ccc4&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F7c1ed21b0ef41bd5f870a8aa5ada81cb39db3d48.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chinkwo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/09/VIVADO_FIR滤波器设计与仿真（一）/" itemprop="url">
+                  VIVADO FIR滤波器设计与仿真（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-05-09 08:48:01 / Updated at: 08:54:11" itemprop="dateCreated datePublished" datetime="2018-05-09T08:48:01+08:00">2018-05-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="VIVADO-FIR滤波器设计与仿真（一）"><a href="#VIVADO-FIR滤波器设计与仿真（一）" class="headerlink" title="VIVADO FIR滤波器设计与仿真（一）"></a>VIVADO FIR滤波器设计与仿真（一）</h1><p>最近在学习FPGA DSP相关设计，从滤波器开始学习，最开始先生成两个正弦信号，产生混频信号，通过modelsim仿真来验证设计。<br>本案例用Block Design方法进行设计（也可以选择编写.v文件的形式进行设计）。</p>
+<h2 id="信号源产生"><a href="#信号源产生" class="headerlink" title="信号源产生"></a>信号源产生</h2><p>本次案例用DDS IP核产生两个简单的正弦信号，为了方便后面观察，这里分别产生一个4M和一个5M的正弦信号。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212817736-1691967118.png" alt=""><br>双击打开DDS IP核进入设置，对相关参数进行设置<br>本案例相关设置如下所示：<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212824449-1184768642.png" alt=""><br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212847085-1232916766.png" alt=""><br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212852364-2121483226.png" alt=""><br>设置完相关参数之后，可以在Output Frequencies中查看频率信息。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212855851-66488557.png" alt=""><br>同样的，在Summary选项中查看设置的参数信息<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212859714-1726891034.png" alt=""></p>
+<h2 id="混频"><a href="#混频" class="headerlink" title="混频"></a>混频</h2><p>调用一个乘法器，将两路正弦信号进行混频，观察混频之后的信号。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212904669-1917078363.png" alt=""></p>
+<h2 id="连线"><a href="#连线" class="headerlink" title="连线"></a>连线</h2><p>IP模块选择完成以后，就可以进行连线了，首先选中DDS IP的aclk管脚<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212908289-661767784.png" alt=""><br>右键点击ackl引脚，点击make external<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212911083-1553326287.png" alt=""><br>会产生一个aclk的输入管脚，然后把另外一个DDS IP核的aclk引脚连接到aclk输入管脚上。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508213724794-904509753.png" alt=""><br>然后把两个DDS的M_ASIS_DATA输出管脚分别连接到mult_gen IP核的A和B上，之后，右键点击P管脚，选择make external自动生成输出的管脚即可。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508213656787-1238810221.png" alt=""><br>右键点击空白处，选择valid design,出现如下窗口，说明连接没有错误。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212918414-922465889.png" alt=""><br>连线完成之后，ctrl+s保存一下工程，然后在source窗口里面，有一个类似于金字塔形状的选项<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212923643-711788417.png" alt=""><br>这个就是工程的BD文件，右键点击，选择create a HDL wapper,生成一个顶层文件。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212926451-589739762.png" alt=""></p>
+<h2 id="仿真"><a href="#仿真" class="headerlink" title="仿真"></a>仿真</h2><p>工程建立完成以后，我们写个TB文件对其进行仿真，测试代码如下：<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_top(</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">reg</span> aclk_0	;</span><br><span class="line">    <span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>]S_0;</span><br><span class="line">    <span class="keyword">initial</span></span><br><span class="line">    	aclk_0	=	<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">always</span>	#<span class="number">5</span>	aclk_0	=	~aclk_0	;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    DSP_TEST_wrapper DSP_TEST_wrapper_i</span><br><span class="line">       (<span class="variable">.aclk_0</span>(aclk_0),</span><br><span class="line">        <span class="variable">.S_0</span>(S_0));</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure></p>
+<p>将测试文件添加进工程，点击左侧run simulation即可用modelsim进行仿真（需要将VIVADO和modelsim进行关联，在SIMULATION选项进行设置）<br>仿真结果如下图所示（我将两路正弦信号也连了管脚出来，便于仿真观察，也可以在modelsim中把DDS IP的信号添加进来观察，效果一样）<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508214208816-548728513.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yuzhengguo.top/2018/04/22/我的第一篇博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chinkwo Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524418210619&di=1d9c2878b044ad09f9dc929b25e7ccc4&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F7c1ed21b0ef41bd5f870a8aa5ada81cb39db3d48.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chinkwo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/22/我的第一篇博客/" itemprop="url">
+                  我的第一篇博客
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-04-22 22:57:58 / Updated at: 23:00:31" itemprop="dateCreated datePublished" datetime="2018-04-22T22:57:58+08:00">2018-04-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h1><h2 id="学习更新第一篇文章"><a href="#学习更新第一篇文章" class="headerlink" title="学习更新第一篇文章"></a>学习更新第一篇文章</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yuzhengguo.top/2018/04/15/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -466,14 +941,46 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
 
               
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
               
             </nav>
           
@@ -481,11 +988,39 @@
           
 
           
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chinkwo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/u/2778864565/home" target="_blank" title="weibo"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+                  
+                </span>
+              
+            </div>
+          
 
           
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yuzhengguo.top" title="个人主页" target="_blank">个人主页</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           

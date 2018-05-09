@@ -102,24 +102,41 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="VIVADO FIR滤波器设计与仿真（一）最近在学习FPGA DSP相关设计，从滤波器开始学习，最开始先生成两个正弦信号，产生混频信号，通过modelsim仿真来验证设计。本案例用Block Design方法进行设计（也可以选择编写.v文件的形式进行设计）。 信号源产生本次案例用DDS IP核产生两个简单的正弦信号，为了方便后面观察，这里分别产生一个4M和一个5M的正弦信号。双击打开DDS IP核">
+<meta name="keywords" content="数字信号处理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yuzhengguo.top/2018/04/15/hello-world/index.html">
+<meta property="og:title" content="VIVADO FIR滤波器设计与仿真（一）">
+<meta property="og:url" content="http://yuzhengguo.top/2018/05/09/VIVADO_FIR滤波器设计与仿真（一）/index.html">
 <meta property="og:site_name" content="Chinkwo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="VIVADO FIR滤波器设计与仿真（一）最近在学习FPGA DSP相关设计，从滤波器开始学习，最开始先生成两个正弦信号，产生混频信号，通过modelsim仿真来验证设计。本案例用Block Design方法进行设计（也可以选择编写.v文件的形式进行设计）。 信号源产生本次案例用DDS IP核产生两个简单的正弦信号，为了方便后面观察，这里分别产生一个4M和一个5M的正弦信号。双击打开DDS IP核">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-15T13:56:24.176Z">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212817736-1691967118.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212824449-1184768642.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212847085-1232916766.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212852364-2121483226.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212855851-66488557.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212859714-1726891034.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212904669-1917078363.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212908289-661767784.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212911083-1553326287.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508213724794-904509753.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508213656787-1238810221.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212918414-922465889.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212923643-711788417.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212926451-589739762.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508214208816-548728513.png">
+<meta property="og:updated_time" content="2018-05-09T00:54:11.043Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="VIVADO FIR滤波器设计与仿真（一）">
+<meta name="twitter:description" content="VIVADO FIR滤波器设计与仿真（一）最近在学习FPGA DSP相关设计，从滤波器开始学习，最开始先生成两个正弦信号，产生混频信号，通过modelsim仿真来验证设计。本案例用Block Design方法进行设计（也可以选择编写.v文件的形式进行设计）。 信号源产生本次案例用DDS IP核产生两个简单的正弦信号，为了方便后面观察，这里分别产生一个4M和一个5M的正弦信号。双击打开DDS IP核">
+<meta name="twitter:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212817736-1691967118.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yuzhengguo.top/2018/04/15/hello-world/"/>
+  <link rel="canonical" href="http://yuzhengguo.top/2018/05/09/VIVADO_FIR滤波器设计与仿真（一）/"/>
 
 
 
@@ -129,7 +146,7 @@
   };
 </script>
 
-  <title>Hello World | Chinkwo</title>
+  <title>VIVADO FIR滤波器设计与仿真（一） | Chinkwo</title>
   
 
 
@@ -293,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yuzhengguo.top/2018/04/15/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yuzhengguo.top/2018/05/09/VIVADO_FIR滤波器设计与仿真（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chinkwo Yu">
@@ -310,7 +327,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">VIVADO FIR滤波器设计与仿真（一）
               
             
           </h1>
@@ -335,9 +352,13 @@
                 
               
 
-              <time title="Post created: 2018-04-15 21:56:24" itemprop="dateCreated datePublished" datetime="2018-04-15T21:56:24+08:00">2018-04-15</time>
+              <time title="Post created: 2018-05-09 08:48:01 / Updated at: 08:54:11" itemprop="dateCreated datePublished" datetime="2018-05-09T08:48:01+08:00">2018-05-09</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -369,15 +390,12 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="VIVADO-FIR滤波器设计与仿真（一）"><a href="#VIVADO-FIR滤波器设计与仿真（一）" class="headerlink" title="VIVADO FIR滤波器设计与仿真（一）"></a>VIVADO FIR滤波器设计与仿真（一）</h1><p>最近在学习FPGA DSP相关设计，从滤波器开始学习，最开始先生成两个正弦信号，产生混频信号，通过modelsim仿真来验证设计。<br>本案例用Block Design方法进行设计（也可以选择编写.v文件的形式进行设计）。</p>
+<h2 id="信号源产生"><a href="#信号源产生" class="headerlink" title="信号源产生"></a>信号源产生</h2><p>本次案例用DDS IP核产生两个简单的正弦信号，为了方便后面观察，这里分别产生一个4M和一个5M的正弦信号。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212817736-1691967118.png" alt=""><br>双击打开DDS IP核进入设置，对相关参数进行设置<br>本案例相关设置如下所示：<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212824449-1184768642.png" alt=""><br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212847085-1232916766.png" alt=""><br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212852364-2121483226.png" alt=""><br>设置完相关参数之后，可以在Output Frequencies中查看频率信息。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212855851-66488557.png" alt=""><br>同样的，在Summary选项中查看设置的参数信息<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212859714-1726891034.png" alt=""></p>
+<h2 id="混频"><a href="#混频" class="headerlink" title="混频"></a>混频</h2><p>调用一个乘法器，将两路正弦信号进行混频，观察混频之后的信号。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212904669-1917078363.png" alt=""></p>
+<h2 id="连线"><a href="#连线" class="headerlink" title="连线"></a>连线</h2><p>IP模块选择完成以后，就可以进行连线了，首先选中DDS IP的aclk管脚<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212908289-661767784.png" alt=""><br>右键点击ackl引脚，点击make external<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212911083-1553326287.png" alt=""><br>会产生一个aclk的输入管脚，然后把另外一个DDS IP核的aclk引脚连接到aclk输入管脚上。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508213724794-904509753.png" alt=""><br>然后把两个DDS的M_ASIS_DATA输出管脚分别连接到mult_gen IP核的A和B上，之后，右键点击P管脚，选择make external自动生成输出的管脚即可。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508213656787-1238810221.png" alt=""><br>右键点击空白处，选择valid design,出现如下窗口，说明连接没有错误。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212918414-922465889.png" alt=""><br>连线完成之后，ctrl+s保存一下工程，然后在source窗口里面，有一个类似于金字塔形状的选项<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212923643-711788417.png" alt=""><br>这个就是工程的BD文件，右键点击，选择create a HDL wapper,生成一个顶层文件。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508212926451-589739762.png" alt=""></p>
+<h2 id="仿真"><a href="#仿真" class="headerlink" title="仿真"></a>仿真</h2><p>工程建立完成以后，我们写个TB文件对其进行仿真，测试代码如下：<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_top(</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">reg</span> aclk_0	;</span><br><span class="line">    <span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>]S_0;</span><br><span class="line">    <span class="keyword">initial</span></span><br><span class="line">    	aclk_0	=	<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">always</span>	#<span class="number">5</span>	aclk_0	=	~aclk_0	;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    DSP_TEST_wrapper DSP_TEST_wrapper_i</span><br><span class="line">       (<span class="variable">.aclk_0</span>(aclk_0),</span><br><span class="line">        <span class="variable">.S_0</span>(S_0));</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure></p>
+<p>将测试文件添加进工程，点击左侧run simulation即可用modelsim进行仿真（需要将VIVADO和modelsim进行关联，在SIMULATION选项进行设置）<br>仿真结果如下图所示（我将两路正弦信号也连了管脚出来，便于仿真观察，也可以在modelsim中把DDS IP的信号添加进来观察，效果一样）<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180508214208816-548728513.png" alt=""></p>
 
       
     </div>
@@ -396,6 +414,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/数字信号处理/" rel="tag"># 数字信号处理</a>
+          
+        </div>
+      
 
       
       
@@ -405,14 +429,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/22/我的第一篇博客/" rel="next" title="我的第一篇博客">
+                <i class="fa fa-chevron-left"></i> 我的第一篇博客
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/22/我的第一篇博客/" rel="prev" title="我的第一篇博客">
-                我的第一篇博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/09/VIVADO时序分析练习/" rel="prev" title="VIVADO时序分析练习">
+                VIVADO时序分析练习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -591,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VIVADO-FIR滤波器设计与仿真（一）"><span class="nav-number">1.</span> <span class="nav-text">VIVADO FIR滤波器设计与仿真（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#信号源产生"><span class="nav-number">1.1.</span> <span class="nav-text">信号源产生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#混频"><span class="nav-number">1.2.</span> <span class="nav-text">混频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连线"><span class="nav-number">1.3.</span> <span class="nav-text">连线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仿真"><span class="nav-number">1.4.</span> <span class="nav-text">仿真</span></a></li></ol></li></ol></div>
             
 
           </div>

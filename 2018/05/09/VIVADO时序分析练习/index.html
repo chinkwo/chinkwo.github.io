@@ -102,24 +102,43 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="VIVADO时序分析练习时序分析在FPGA设计中是分析工程很重要的手段，时序分析的原理和相关的公式小编在这里不再介绍，这篇文章是小编在练习VIVADO软件时序分析的笔记，小编这里使用的是18.1版本的VIVADO。这次的练习选择的是ZYNQ的芯片，原本工程是工作在100MHz的时钟，但是作为练习，我们可以把时钟调到一个极限的程度来进行优化。首先，打开一个工程，更改一下时钟频率，使得工程能够有一些时">
+<meta name="keywords" content="时序分析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yuzhengguo.top/2018/04/15/hello-world/index.html">
+<meta property="og:title" content="VIVADO时序分析练习">
+<meta property="og:url" content="http://yuzhengguo.top/2018/05/09/VIVADO时序分析练习/index.html">
 <meta property="og:site_name" content="Chinkwo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="VIVADO时序分析练习时序分析在FPGA设计中是分析工程很重要的手段，时序分析的原理和相关的公式小编在这里不再介绍，这篇文章是小编在练习VIVADO软件时序分析的笔记，小编这里使用的是18.1版本的VIVADO。这次的练习选择的是ZYNQ的芯片，原本工程是工作在100MHz的时钟，但是作为练习，我们可以把时钟调到一个极限的程度来进行优化。首先，打开一个工程，更改一下时钟频率，使得工程能够有一些时">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-15T13:56:24.176Z">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113457588-1720954736.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113520539-99296894.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113540988-731657021.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113610685-1067421724.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113551286-1792658497.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113630185-1628655457.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113655035-1690350832.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113713727-1444353271.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113726001-1620737151.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113739322-1830876495.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113809009-753478045.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113817990-262378600.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113825985-293828252.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113920744-1803404558.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113847971-1669467386.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113910805-2002315916.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113931941-306839227.png">
+<meta property="og:updated_time" content="2018-05-09T00:50:35.733Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="VIVADO时序分析练习">
+<meta name="twitter:description" content="VIVADO时序分析练习时序分析在FPGA设计中是分析工程很重要的手段，时序分析的原理和相关的公式小编在这里不再介绍，这篇文章是小编在练习VIVADO软件时序分析的笔记，小编这里使用的是18.1版本的VIVADO。这次的练习选择的是ZYNQ的芯片，原本工程是工作在100MHz的时钟，但是作为练习，我们可以把时钟调到一个极限的程度来进行优化。首先，打开一个工程，更改一下时钟频率，使得工程能够有一些时">
+<meta name="twitter:image" content="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113457588-1720954736.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yuzhengguo.top/2018/04/15/hello-world/"/>
+  <link rel="canonical" href="http://yuzhengguo.top/2018/05/09/VIVADO时序分析练习/"/>
 
 
 
@@ -129,7 +148,7 @@
   };
 </script>
 
-  <title>Hello World | Chinkwo</title>
+  <title>VIVADO时序分析练习 | Chinkwo</title>
   
 
 
@@ -293,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yuzhengguo.top/2018/04/15/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yuzhengguo.top/2018/05/09/VIVADO时序分析练习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chinkwo Yu">
@@ -310,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">VIVADO时序分析练习
               
             
           </h1>
@@ -335,9 +354,13 @@
                 
               
 
-              <time title="Post created: 2018-04-15 21:56:24" itemprop="dateCreated datePublished" datetime="2018-04-15T21:56:24+08:00">2018-04-15</time>
+              <time title="Post created: 2018-05-09 08:48:01 / Updated at: 08:50:35" itemprop="dateCreated datePublished" datetime="2018-05-09T08:48:01+08:00">2018-05-09</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -369,15 +392,40 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="VIVADO时序分析练习"><a href="#VIVADO时序分析练习" class="headerlink" title="VIVADO时序分析练习"></a>VIVADO时序分析练习</h1><p>时序分析在FPGA设计中是分析工程很重要的手段，时序分析的原理和相关的公式小编在这里不再介绍，这篇文章是小编在练习VIVADO软件时序分析的笔记，小编这里使用的是18.1版本的VIVADO。<br>这次的练习选择的是ZYNQ的芯片，原本工程是工作在100MHz的时钟，但是作为练习，我们可以把时钟调到一个极限的程度来进行优化。<br>首先，打开一个工程，更改一下时钟频率，使得工程能够有一些时序问题，我们再通过时序分析的方法对它进行优化。我们这里把原本的100M时钟改成了200M时钟，具体步骤如下：</p>
+<ul>
+<li><strong>一</strong>：更改时钟之后进行综合，并打开timing analysis<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113457588-1720954736.png" alt="1"></li>
+<li><p><strong>二</strong>：通过report clock可以查看全局时钟树的情况<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113520539-99296894.png" alt="2"></p>
+</li>
+<li><p><strong>三</strong>：通过report timing summary可以看到出现了12个时序问题，总的时序问题达到9个ns多，说明时序问题已经比较糟糕了<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113540988-731657021.png" alt="3"></p>
+</li>
+<li><p><strong>四</strong>：在timing窗口里面可以查看相关的时序违例信息，这里只显示了10个，可以在report timing summary中选择要查看的个数，比如选择100个<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113610685-1067421724.png" alt="4"></p>
+</li>
+</ul>
+<p><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113551286-1792658497.png" alt="5"></p>
+<ul>
+<li><p><strong>五</strong>：我们可以打开setting -&gt;synthesis，更改strategy里面VIVADO提供的优化strategy来进行相关的优化，不同的strategy对应不同的综合模式<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113630185-1628655457.png" alt="6"><br>也可以在design runs里面，右键点击相应的sunth-&gt;change run settings来修改不同的综合方案<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113655035-1690350832.png" alt="7"><br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113713727-1444353271.png" alt="8"></p>
+</li>
+<li><p><strong>六</strong>：这里我们选择Flow_PerfOptimized_high来进行综合（也可以一个一个的尝试），综合完成之后，可以看到，违例的现象优化到了8条，总的违例时间减少了1ns。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113726001-1620737151.png" alt="9"></p>
+</li>
+<li><p><strong>七</strong>：小编在尝试各种综合方案之后，发现并不能够优化很好，所以我们开始进行下一步操作——Run Implementation，看看通过Implementation VIVADO能够把时序问题优化到什么程度。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113739322-1830876495.png" alt="10"></p>
+</li>
+</ul>
+<p>完成布局布线之后，可以看到先前的时序问题通过布局布线已经被优化了，现在没有了时序问题，但是最差的余量只有0.152ns,这个结果并不是很理想。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113809009-753478045.png" alt="11"></p>
+<ul>
+<li><strong>八</strong>：通过查看时序路径详情，可以看到时序的余量很不理想<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113817990-262378600.png" alt="12"></li>
+</ul>
+<p>那么我们可以通过修改Implementation的方案来进行优化，在settings里面找到Implementation的strategy，选择不同的方案进行尝试<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113825985-293828252.png" alt=""></p>
+<ul>
+<li><strong>九</strong>：这里我们选择Performance Explore进行尝试，可以看到通过更改Implementation的strategy，时序被优化了，最差的余量达到了0.556ns，比之前更好了，但是似乎还可以再进行优化，需要不断的尝试，从而找到最优的结果。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113920744-1803404558.png" alt="13"></li>
+</ul>
+<p><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113847971-1669467386.png" alt="14"></p>
+<ul>
+<li><p><strong>十</strong>：在synthesis的strategy和Implementation的strategy里面可以看到其他的一些选项，都可以尝试，比如在Implementation的strategy里面有一个Flow quick的模式，选择Flow quick模式对比之前的模式可以发现，VIVADO在这个模式下进行布局布线会快很多，但是时序也变的一塌糊涂。小编认为这种模式可以在一些比较大的工程里，比较赶时间的情况下尝试使用。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113910805-2002315916.png" alt="15"></p>
+</li>
+<li><p><strong>十一</strong>：同样的，我们还可以通过report power来查看功耗情况，并通过更改一些策略进行优化，其他的一些功能小编也在探索中。<br><img src="https://images2018.cnblogs.com/blog/1353678/201805/1353678-20180507113931941-306839227.png" alt="16"></p>
+</li>
+</ul>
 
       
     </div>
@@ -396,6 +444,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/时序分析/" rel="tag"># 时序分析</a>
+          
+        </div>
+      
 
       
       
@@ -405,15 +459,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/05/09/VIVADO_FIR滤波器设计与仿真（一）/" rel="next" title="VIVADO FIR滤波器设计与仿真（一）">
+                <i class="fa fa-chevron-left"></i> VIVADO FIR滤波器设计与仿真（一）
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/22/我的第一篇博客/" rel="prev" title="我的第一篇博客">
-                我的第一篇博客 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -591,7 +645,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VIVADO时序分析练习"><span class="nav-number">1.</span> <span class="nav-text">VIVADO时序分析练习</span></a></li></ol></div>
             
 
           </div>
